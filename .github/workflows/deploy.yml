@@ -1,4 +1,4 @@
-﻿name: Deploy manual
+name: Deploy manual
 on:
   push:
     branches: [main]
@@ -16,4 +16,5 @@ jobs:
           role-to-assume: arn:aws:iam::613069086586:role/fidentra-training-manual-deploy
           aws-region: ap-southeast-2
       - run: aws s3 cp index.html s3://fidentra-training-manual-613069086586/index.html --content-type "text/html; charset=utf-8"
+      - run: aws s3 cp favicon.png s3://fidentra-training-manual-613069086586/favicon.png --content-type image/png
       - run: aws cloudfront create-invalidation --distribution-id E3S28RMVJSZVQ1 --paths "/*"
